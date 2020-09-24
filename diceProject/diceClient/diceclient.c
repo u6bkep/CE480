@@ -43,7 +43,7 @@ BOOL WINAPI CtrlHandler(DWORD fdwCtrlType)
 	case CTRL_C_EVENT:
 		printf("Ctrl-C event\n\n");
 		Beep(750, 300);
-		exit(0);
+		exit(1);
 		return TRUE;
 
 	default:
@@ -63,6 +63,8 @@ int main(int argc, char *argv[])
 		SOCKET s;
 
 		SetConsoleCtrlHandler(CtrlHandler,1);
+
+		
 
 	// no need to change anything from here...
 		// Before using Winsock calls on Windows, the Winsock library needs to be initialized...
@@ -129,6 +131,7 @@ int main(int argc, char *argv[])
 		int number;
 		printf("Enter the random number of dice: ");
 		scanf_s("%d", &number);
+		
 		printf("asking server for %d rolls of %d sided dice\n", number, max);
 		sprintf_s(message, MSGSENDLENGTH, "%d,%d\0", max, number);
 

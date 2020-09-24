@@ -148,6 +148,8 @@ int main(int argc, char *argv[])
 	int connections = 0;
 	HANDLE  hThreadArray[MAX_THREADS];
 
+	unsigned int port;
+	sscanf_s(argv[1], "%u", &port);
 
 // CE-480 No need to change anything from here....
 	// Before using Winsock calls on Windows, the Winsock library needs to be initialized...     
@@ -180,7 +182,7 @@ int main(int argc, char *argv[])
 		socketServer.sin_family = AF_INET;							// Must agree with the socket Address Family type
 
 		//CE-480 - Change the port number that the server is using by altering the following line.
-		socketServer.sin_port = htons(60481);						// htons() converts the host endianness to network endianness
+		socketServer.sin_port = htons(port);						// htons() converts the host endianness to network endianness
 																	// This should always be used when transmitting integers
 																	// ntohs() converts the opposite way for receiving integers.
 	}
